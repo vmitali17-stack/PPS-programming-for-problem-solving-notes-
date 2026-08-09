@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to C</title>
+<style>
+  :root{
+    --bg: #0f1424;
+    --panel: #171d33;
+    --ink: #eef1fb;
+    --muted: #9aa3c0;
+    --blue: #5b8cff;
+    --mint: #34d8b0;
+    --amber: #ffb648;
+    --coral: #ff6b81;
+    --violet: #b18bff;
+    --card-border: #262e4a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height:1.55;
+    padding-bottom:60px;
+  }
+  .hero{
+    padding:48px 20px 36px;
+    text-align:center;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(91,140,255,0.18), transparent 40%),
+      radial-gradient(circle at 80% 0%, rgba(52,216,176,0.15), transparent 45%),
+      var(--bg);
+    border-bottom:1px solid var(--card-border);
+  }
+  .eyebrow{
+    display:inline-block;
+    font-size:12px;
+    letter-spacing:2px;
+    color:var(--mint);
+    background:rgba(52,216,176,0.12);
+    border:1px solid rgba(52,216,176,0.35);
+    padding:5px 14px;
+    border-radius:20px;
+    margin-bottom:16px;
+    font-weight:600;
+  }
+  h1{
+    font-size:32px;
+    margin:0 0 10px;
+    font-weight:800;
+    letter-spacing:-0.5px;
+  }
+  .hero p{
+    color:var(--muted);
+    font-size:15px;
+    max-width:420px;
+    margin:0 auto;
+  }
+  .prompt-line{
+    margin-top:20px;
+    font-family:'Courier New', monospace;
+    font-size:13px;
+    color:var(--amber);
+    background:#0b0f1d;
+    display:inline-block;
+    padding:8px 16px;
+    border-radius:8px;
+    border:1px solid var(--card-border);
+  }
+
+  .wrap{ max-width:720px; margin:0 auto; padding:0 16px;}
+
+  .section{ margin-top:34px; }
+  .section-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .icon{
+    width:34px; height:34px;
+    border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:17px;
+    flex-shrink:0;
+  }
+  .section-head h2{
+    font-size:19px;
+    margin:0;
+    font-weight:700;
+  }
+
+  .card{
+    background:var(--panel);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    padding:18px 18px;
+    margin-bottom:12px;
+  }
+  .card p{ margin:0 0 8px; font-size:14.5px; color:#dfe3f5;}
+  .card p:last-child{margin-bottom:0;}
+  .card b{ color:#fff; }
+
+  .accent-blue{ border-left:4px solid var(--blue); }
+  .accent-mint{ border-left:4px solid var(--mint); }
+  .accent-amber{ border-left:4px solid var(--amber); }
+  .accent-coral{ border-left:4px solid var(--coral); }
+  .accent-violet{ border-left:4px solid var(--violet); }
+
+  .icon-blue{ background:rgba(91,140,255,0.15); color:var(--blue); }
+  .icon-mint{ background:rgba(52,216,176,0.15); color:var(--mint); }
+  .icon-amber{ background:rgba(255,182,72,0.15); color:var(--amber); }
+  .icon-coral{ background:rgba(255,107,129,0.15); color:var(--coral); }
+  .icon-violet{ background:rgba(177,139,255,0.15); color:var(--violet); }
+
+  .grid2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  @media (max-width:480px){
+    .grid2{ grid-template-columns:1fr; }
+  }
+  .mini{
+    background:#12182c;
+    border:1px solid var(--card-border);
+    border-radius:10px;
+    padding:12px 14px;
+    font-size:13.5px;
+  }
+  .mini b{ display:block; font-size:13px; margin-bottom:2px; }
+
+  .code{
+    background:#0b0f1d;
+    border:1px solid var(--card-border);
+    border-radius:10px;
+    padding:14px 16px;
+    font-family:'Courier New', monospace;
+    font-size:13px;
+    color:#c9d6ff;
+    overflow-x:auto;
+    white-space:pre;
+    margin:10px 0 0;
+  }
+  .code .cm{ color:#6b7899; }
+  .code .kw{ color:var(--mint); }
+  .code .fn{ color:var(--amber); }
+  .code .str{ color:#ffd479; }
+
+  .tag-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:6px;
+  }
+  .tag{
+    font-size:12px;
+    padding:5px 10px;
+    border-radius:8px;
+    font-weight:600;
+  }
+  .tag-blue{ background:rgba(91,140,255,0.15); color:var(--blue); }
+  .tag-mint{ background:rgba(52,216,176,0.15); color:var(--mint); }
+  .tag-amber{ background:rgba(255,182,72,0.15); color:var(--amber); }
+  .tag-coral{ background:rgba(255,107,129,0.15); color:var(--coral); }
+  .tag-violet{ background:rgba(177,139,255,0.15); color:var(--violet); }
+
+  .footer{
+    text-align:center;
+    margin-top:44px;
+    padding:20px;
+    color:var(--muted);
+    font-size:12.5px;
+    border-top:1px solid var(--card-border);
+  }
+
+  .step-row{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    margin-bottom:12px;
+  }
+  .step-num{
+    width:26px; height:26px;
+    border-radius:50%;
+    background:var(--blue);
+    color:#0b0f1d;
+    font-weight:800;
+    font-size:12.5px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+    margin-top:2px;
+  }
+  .step-text b{ display:block; font-size:14px; color:#fff; margin-bottom:2px;}
+  .step-text span{ font-size:13.5px; color:var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="eyebrow">PPS &middot; CHAPTER 1</span>
+  <h1>Introduction to C</h1>
+  <p>A simple, clear walkthrough of what C is, how it works, and how a program runs — start to finish.</p>
+  <div class="prompt-line">#include &lt;stdio.h&gt; &nbsp;→&nbsp; int main()</div>
+</div>
+
+<div class="wrap">
+
+  <!-- WHAT IS C -->
+  <div class="section">
+    <div class="section-head">
+      <div class="icon icon-blue">💻</div>
+      <h2>What is C?</h2>
+    </div>
+    <div class="card accent-blue">
+      <p>C is a <b>general-purpose, procedural programming language</b> created by <b>Dennis Ritchie</b> in <b>1972</b> at Bell Labs, originally to build the UNIX operating system.</p>
+      <p>It's called a <b>"middle-level" language</b> — it gives you low-level control (like memory access) while still being readable like a high-level language.</p>
+      <div class="tag-row">
+        <span class="tag tag-blue">Procedural</span>
+        <span class="tag tag-mint">Compiled</span>
+        <span class="tag tag-amber">Middle-level</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY LEARN C -->
+  <div class="section">
+    <div class="section-head">
+      <div class="icon icon-mint">🌱</div>
+      <h2>Why Learn C First?</h2>
+    </div>
+    <div class="grid2">
+      <div class="mini"><b>🧠 Builds logic</b>Teaches how computers actually process instructions</div>
+      <div class="mini"><b>🔗 Foundation</b>C++, Java, Python all borrow from C's syntax</div>
+      <div class="mini"><b>⚙️ Close to hardware</b>Understand memory, pointers, and data directly</div>
+      <div class="mini"><b>🏆 Used everywhere</b>OS kernels, embedded systems, competitive coding</div>
+    </div>
+  </div>
+
+  <!-- STRUCTURE -->
+  <div class="section">
+    <div class="section-head">
+      <div class="icon icon-amber">🧩</div>
+      <h2>Structure of a Program</h2>
+    </div>
+    <div class="card accent-amber">
+      <p>Every C program follows the same basic skeleton:</p>
+<div class="code"><span class="cm">// Documentation</span>
+<span class="kw">#include</span> &lt;stdio.h&gt;      <span class="cm">// header</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {              <span class="cm">// entry point</span>
+    <span class="kw">int</span> a = 5;             <span class="cm">// declaration</span>
+    <span class="fn">printf</span>(<span class="str">"Hello!"</span>);   <span class="cm">// statement</span>
+    <span class="kw">return</span> 0;              <span class="cm">// exit</span>
+}</div>
+      <p style="margin-top:10px;">Execution always starts at <b>main()</b> — no matter how big the program is.</p>
+    </div>
+  </div>
+
+  <!-- COMPILATION -->
+  <div class="section">
+    <div class="section-head">
+      <div class="icon icon-coral">⚡</div>
+      <h2>How a Program Runs</h2>
+    </div>
+    <div class="card accent-coral">
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div class="step-text"><b>Source Code</b><span>Your .c file, written in plain C syntax</span></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div class="step-text"><b>Preprocessor</b><span>Expands things like #include before real compiling starts</span></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div class="step-text"><b>Compiler</b><span>Translates code into object code (machine-level)</span></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">4</div>
+        <div class="step-text"><b>Linker</b><span>Connects your code with library functions (like printf)</span></div>
+      </div>
+      <div class="step-row" style="margin-bottom:0;">
+        <div class="step-num">5</div>
+        <div class="step-text"><b>Executable (.exe)</b><span>The final program — ready to run!</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOKENS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="icon icon-violet">🔤</div>
+      <h2>Tokens — The Building Blocks</h2>
+    </div>
+    <div class="grid2">
+      <div class="mini"><b>Keywords</b>int, if, while — reserved words</div>
+      <div class="mini"><b>Identifiers</b>Names you give — sum, total</div>
+      <div class="mini"><b>Constants</b>Fixed values — 10, 3.14</div>
+      <div class="mini"><b>Strings</b>"Hello World" in double quotes</div>
+      <div class="mini"><b>Operators</b>+ - * / == &&</div>
+      <div class="mini"><b>Symbols</b>{ } ( ) ; ,</div>
+    </div>
+  </div>
+
+  <!-- FIRST PROGRAM -->
+  <div class="section">
+    <div class="section-head">
+      <div class="icon icon-blue">🚀</div>
+      <h2>Your First Program</h2>
+    </div>
+    <div class="card accent-blue">
+<div class="code"><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="fn">printf</span>(<span class="str">"Hello, World!"</span>);
+    <span class="kw">return</span> 0;
+}
+
+<span class="cm">/* Output: Hello, World! */</span></div>
+      <p style="margin-top:10px;"><b>printf()</b> shows output. <b>scanf()</b> takes input — and always needs <b>&amp;</b> before the variable name.</p>
+    </div>
+  </div>
+
+  <!-- QUICK RECAP -->
+  <div class="section">
+    <div class="section-head">
+      <div class="icon icon-mint">✅</div>
+      <h2>Quick Recap</h2>
+    </div>
+    <div class="card accent-mint">
+      <p>• C was made by <b>Dennis Ritchie</b> in <b>1972</b></p>
+      <p>• Every program needs a <b>main()</b> function</p>
+      <p>• Code goes: <b>preprocess → compile → link → run</b></p>
+      <p>• C is <b>case-sensitive</b>, statements end with <b>;</b></p>
+      <p>• <b>printf</b> = output, <b>scanf</b> = input</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">PPS · Programming for Problem Solving · Chapter 1</div>
+
+</body>
+</html>
