@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>C Programming — Complete Sem 1 Notes | Mitali Verma</title>
+<style>
+  :root{
+    --bg:#0f172a; --card:#ffffff; --ink:#1e293b; --muted:#64748b;
+    --blue:#2563eb; --purple:#7c3aed; --teal:#0d9488; --orange:#ea580c;
+    --pink:#db2777; --green:#16a34a; --red:#dc2626; --yellow:#ca8a04;
+    --code-bg:#1e1e2e; --code-ink:#e2e8f0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:'Segoe UI',Roboto,Arial,sans-serif;
+    margin:0; padding:0; background:linear-gradient(180deg,#eef2ff,#f8fafc 400px);
+    color:var(--ink); line-height:1.6;
+  }
+  header{
+    background:linear-gradient(120deg,#4338ca,#7c3aed 45%,#db2777);
+    color:white; padding:40px 20px 60px; text-align:center;
+    border-radius:0 0 40px 40px;
+  }
+  header h1{margin:0; font-size:2.2em;}
+  header p{margin:8px 0 0; opacity:.9; font-size:1.05em;}
+  .wrap{max-width:920px; margin:-30px auto 60px; padding:0 16px;}
+  nav{
+    background:white; border-radius:16px; padding:20px 24px; margin-bottom:28px;
+    box-shadow:0 6px 20px rgba(30,41,59,.08);
+  }
+  nav h2{margin-top:0; color:var(--purple); font-size:1.1em;}
+  nav ol{columns:2; column-gap:24px; padding-left:20px; font-size:.95em;}
+  nav a{color:var(--blue); text-decoration:none;}
+  nav a:hover{text-decoration:underline;}
+  section{
+    background:var(--card); border-radius:16px; padding:26px 28px; margin-bottom:22px;
+    box-shadow:0 6px 20px rgba(30,41,59,.06); border-left:6px solid var(--blue);
+    scroll-margin-top:20px;
+  }
+  section h2{margin-top:0; color:var(--blue); font-size:1.4em; display:flex; align-items:center; gap:10px;}
+  section h3{color:var(--purple); margin-bottom:6px;}
+  .tag{
+    display:inline-block; background:#eef2ff; color:var(--purple);
+    padding:2px 10px; border-radius:20px; font-size:.75em; font-weight:600; margin-bottom:10px;
+  }
+  .def{
+    background:#f0fdfa; border-left:4px solid var(--teal); padding:10px 14px;
+    border-radius:8px; margin:10px 0;
+  }
+  .why{
+    background:#fff7ed; border-left:4px solid var(--orange); padding:10px 14px;
+    border-radius:8px; margin:10px 0; font-size:.95em;
+  }
+  .why b{color:var(--orange);}
+  .tip{
+    background:#fdf2f8; border-left:4px solid var(--pink); padding:10px 14px;
+    border-radius:8px; margin:10px 0; font-size:.92em;
+  }
+  .tip b{color:var(--pink);}
+  table{width:100%; border-collapse:collapse; margin:12px 0; font-size:.92em;}
+  th,td{border:1px solid #e2e8f0; padding:8px 10px; text-align:left;}
+  th{background:#eef2ff; color:var(--purple);}
+  tr:nth-child(even){background:#f8fafc;}
+  pre{
+    background:var(--code-bg); color:var(--code-ink); padding:16px 18px;
+    border-radius:10px; overflow-x:auto; font-size:.88em; line-height:1.5;
+    margin:12px 0; border:1px solid #334155;
+  }
+  code{font-family:'Consolas','Courier New',monospace;}
+  .inline-code{background:#eef2ff; color:var(--purple); padding:1px 6px; border-radius:5px; font-family:monospace; font-size:.92em;}
+  .kw{color:#c792ea;} .str{color:#c3e88d;} .cmt{color:#7c88a3; font-style:italic;} .num{color:#f78c6c;} .fn{color:#82aaff;}
+  .out{
+    background:#0f172a; color:#4ade80; padding:10px 14px; border-radius:8px;
+    font-family:monospace; font-size:.88em; margin-top:-6px;
+  }
+  .out::before{content:"▶ Output: "; color:#94a3b8;}
+  ul{padding-left:20px;}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  @media(max-width:600px){.grid2{grid-template-columns:1fr;} nav ol{columns:1;}}
+  .badge-green{color:var(--green); font-weight:700;}
+  .badge-red{color:var(--red); font-weight:700;}
+  footer{text-align:center; color:var(--muted); padding:20px; font-size:.9em;}
+  .divider{height:3px; background:linear-gradient(90deg,var(--blue),var(--purple),var(--pink)); border:none; border-radius:2px; margin:30px 0;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>💻 C Programming — Complete Notes</h1>
+  <p>Semester 1 · Programming for Problem Solving · Mitali Verma</p>
+</header>
+
+<div class="wrap">
+
+<nav id="top">
+  <h2>📑 Contents</h2>
+  <ol>
+    <li><a href="#intro">Introduction to C</a></li>
+    <li><a href="#structure">Structure of a C Program</a></li>
+    <li><a href="#compile">Compilation Process</a></li>
+    <li><a href="#datatypes">Data Types</a></li>
+    <li><a href="#variables">Variables & Constants</a></li>
+    <li><a href="#io">Input / Output</a></li>
+    <li><a href="#operators">Operators</a></li>
+    <li><a href="#control">Decision Making (if/switch)</a></li>
+    <li><a href="#loops">Loops</a></li>
+    <li><a href="#arrays">Arrays</a></li>
+    <li><a href="#strings">Strings</a></li>
+    <li><a href="#functions">Functions</a></li>
+    <li><a href="#recursion">Recursion</a></li>
+    <li><a href="#storage">Storage Classes</a></li>
+    <li><a href="#pointers">Pointers</a></li>
+    <li><a href="#structs">Structures & Unions</a></li>
+    <li><a href="#dma">Dynamic Memory Allocation</a></li>
+    <li><a href="#files">File Handling</a></li>
+    <li><a href="#preproc">Preprocessor Directives</a></li>
+    <li><a href="#tricky">Common Confusions & Exam Tips</a></li>
+  </ol>
+</nav>
+
+<!-- 1. INTRO -->
+<section id="intro">
+  <span class="tag">Foundations</span>
+  <h2>1️⃣ Introduction to C</h2>
+  <div class="def"><b>What is C?</b> C is a general-purpose, procedural (step-by-step instruction based) programming language created by <b>Dennis Ritchie in 1972</b> at Bell Labs. It's called the "mother of all languages" because C++, Java, Python's interpreter, and even parts of Windows/Linux are built using C concepts.</div>
+  <div class="why"><b>Why you're learning it first:</b> C teaches you exactly how a computer thinks (memory, variables, execution order) with no hidden magic. Once C clicks, every other language (Python, Java, C++) feels easier because they all borrow C's core ideas.</div>
+  <h3>Key Features</h3>
+  <table>
+    <tr><th>Feature</th><th>Meaning</th></tr>
+    <tr><td>Procedural</td><td>Code runs top to bottom, in the order you write it, using functions</td></tr>
+    <tr><td>Fast / Low-level access</td><td>Lets you directly control memory (via pointers)</td></tr>
+    <tr><td>Portable</td><td>Same C code can run on Windows, Linux, Mac with minor changes</td></tr>
+    <tr><td>Structured</td><td>Programs are broken into functions/blocks — easy to manage</td></tr>
+    <tr><td>Rich Library</td><td>Built-in functions for math, strings, files, etc. (e.g. <span class="inline-code">stdio.h</span>)</td></tr>
+  </table>
+  <div class="tip"><b>Used for:</b> Operating systems (Linux kernel), embedded systems (microcontrollers, IoT devices), device drivers, game engines, and as the base for learning DSA (Data Structures & Algorithms) in interviews.</div>
+</section>
+
+<!-- 2. STRUCTURE -->
+<section id="structure">
+  <span class="tag">Foundations</span>
+  <h2>2️⃣ Structure of a C Program</h2>
+  <p>Every C program follows this skeleton:</p>
+<pre><code><span class="cmt">// 1. Preprocessor directives — tell compiler which libraries to include</span>
+<span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="cmt">// 2. Global declarations (optional) — visible to whole program</span>
+<span class="kw">int</span> globalMarks = 90;
+
+<span class="cmt">// 3. main() function — execution ALWAYS starts here</span>
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="cmt">// 4. Local variable declarations</span>
+    <span class="kw">int</span> age = 18;
+
+    <span class="cmt">// 5. Statements / logic</span>
+    printf(<span class="str">"Hello Mitali! Age: %d"</span>, age);
+
+    <span class="cmt">// 6. Return statement — tells OS the program ended successfully</span>
+    <span class="kw">return</span> 0;
+}
+</code></pre>
+  <div class="out">Hello Mitali! Age: 18</div>
+  <h3>Line-by-line meaning</h3>
+  <ul>
+    <li><span class="inline-code">#include &lt;stdio.h&gt;</span> → gives access to <b>st</b>andard <b>i</b>nput <b>o</b>utput functions like <span class="inline-code">printf</span>, <span class="inline-code">scanf</span></li>
+    <li><span class="inline-code">int main()</span> → the compulsory entry point; <span class="inline-code">int</span> means it returns a whole number to the OS</li>
+    <li><span class="inline-code">{ }</span> → curly braces mark the start/end of a block of code</li>
+    <li><span class="inline-code">;</span> → every statement ends with a semicolon (forgetting this is the #1 beginner error)</li>
+    <li><span class="inline-code">return 0;</span> → 0 means "program ran successfully", non-zero usually means error</li>
+  </ul>
+</section>
+
+<!-- 3. COMPILATION -->
+<section id="compile">
+  <span class="tag">Foundations</span>
+  <h2>3️⃣ How C Code Runs (Compilation Process)</h2>
+  <div class="def">C is a <b>compiled language</b> — your code is fully translated into machine code (0s and 1s) <i>before</i> it runs, unlike Python which is interpreted line-by-line.</div>
+  <p><b>4 Stages:</b></p>
+  <table>
+    <tr><th>Stage</th><th>What Happens</th><th>File Produced</th></tr>
+    <tr><td>1. Preprocessing</td><td>Handles lines starting with <span class="inline-code">#</span> (like <span class="inline-code">#include</span>, <span class="inline-code">#define</span>)</td><td>.i</td>
+    <tr><td>2. Compilation</td><td>Converts C code to Assembly language</td><td>.s</td></tr>
+    <tr><td>3. Assembly</td><td>Converts Assembly to machine code (object code)</td><td>.o / .obj</td></tr>
+    <tr><td>4. Linking</td><td>Combines your object code with library code to make final program</td><td>.exe</td></tr>
+  </table>
+  <div class="tip"><b>Compilers you'll use:</b> GCC (most common, free), Turbo C (old, still used in some colleges), or online compilers like OneCompiler / Compiler Explorer.</div>
+</section>
+
+<!-- 4. DATA TYPES -->
+<section id="datatypes">
+  <span class="tag">Basics</span>
+  <h2>4️⃣ Data Types</h2>
+  <div class="def">Data type tells the compiler <b>what kind of value</b> a variable will hold and <b>how much memory</b> to reserve for it.</div>
+  <table>
+    <tr><th>Type</th><th>Size (typical)</th><th>Stores</th><th>Format Specifier</th></tr>
+    <tr><td><span class="inline-code">int</span></td><td>4 bytes</td><td>Whole numbers</td><td><span class="inline-code">%d</span></td></tr>
+    <tr><td><span class="inline-code">float</span></td><td>4 bytes</td><td>Decimal numbers (single precision)</td><td><span class="inline-code">%f</span></td></tr>
+    <tr><td><span class="inline-code">double</span></td><td>8 bytes</td><td>Decimal numbers (higher precision)</td><td><span class="inline-code">%lf</span></td></tr>
+    <tr><td><span class="inline-code">char</span></td><td>1 byte</td><td>A single character</td><td><span class="inline-code">%c</span></td></tr>
+    <tr><td><span class="inline-code">void</span></td><td>—</td><td>"Nothing" — used for functions that return no value</td><td>—</td></tr>
+  </table>
+  <h3>Modifiers</h3>
+  <p><span class="inline-code">short</span>, <span class="inline-code">long</span>, <span class="inline-code">signed</span>, <span class="inline-code">unsigned</span> adjust size/range. Example: <span class="inline-code">unsigned int</span> stores only 0 and positive numbers but a bigger positive range.</p>
+<pre><code><span class="kw">int</span> age = 18;
+<span class="kw">float</span> price = 99.5;
+<span class="kw">double</span> pi = 3.141592653589;
+<span class="kw">char</span> grade = <span class="str">'A'</span>;
+printf(<span class="str">"%d %f %lf %c"</span>, age, price, pi, grade);
+</code></pre>
+  <div class="tip"><b>Trick to remember:</b> single quotes <span class="inline-code">'A'</span> = char, double quotes <span class="inline-code">"A"</span> = string (array of chars).</div>
+</section>
+
+<!-- 5. VARIABLES -->
+<section id="variables">
+  <span class="tag">Basics</span>
+  <h2>5️⃣ Variables & Constants</h2>
+  <div class="def"><b>Variable</b> = a named memory location whose value CAN change. <b>Constant</b> = a value that CANNOT change once set.</div>
+  <h3>Naming Rules</h3>
+  <ul>
+    <li>Can contain letters, digits, underscore — must start with letter or <span class="inline-code">_</span></li>
+    <li>Cannot use C keywords (<span class="inline-code">int</span>, <span class="inline-code">return</span>, etc.) as names</li>
+    <li>Case sensitive → <span class="inline-code">Age</span> and <span class="inline-code">age</span> are different</li>
+  </ul>
+  <h3>Declaring Constants</h3>
+<pre><code><span class="cmt">// Method 1: const keyword</span>
+<span class="kw">const</span> <span class="kw">float</span> PI = 3.14;
+
+<span class="cmt">// Method 2: #define (preprocessor, no memory used, no semicolon)</span>
+<span class="kw">#define</span> RATE 5
+</code></pre>
+  <div class="why"><b>Why constants matter:</b> If a value like tax rate is used 50 times in code and it changes, you edit ONE line instead of 50 — reduces bugs.</div>
+</section>
+
+<!-- 6. I/O -->
+<section id="io">
+  <span class="tag">Basics</span>
+  <h2>6️⃣ Input & Output</h2>
+  <div class="def"><span class="inline-code">printf()</span> → prints output to screen. <span class="inline-code">scanf()</span> → reads input from user. Both come from <span class="inline-code">stdio.h</span>.</div>
+<pre><code><span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> marks;
+    printf(<span class="str">"Enter your marks: "</span>);
+    scanf(<span class="str">"%d"</span>, &amp;marks);   <span class="cmt">// & means "address of" marks</span>
+    printf(<span class="str">"You entered: %d"</span>, marks);
+    <span class="kw">return</span> 0;
+}
+</code></pre>
+  <div class="tip"><b>Why the <span class="inline-code">&amp;</span> in scanf?</b> scanf needs the actual memory <i>address</i> of the variable to store the input directly into it — not a copy. (Not needed for strings, since an array name is already an address — covered in Arrays section.)</div>
+  <h3>Common Format Specifiers</h3>
+  <table>
+    <tr><th>Specifier</th><th>Used For</th></tr>
+    <tr><td><span class="inline-code">%d</span></td><td>int</td></tr>
+    <tr><td><span class="inline-code">%f</span></td><td>float</td></tr>
+    <tr><td><span class="inline-code">%lf</span></td><td>double</td></tr>
+    <tr><td><span class="inline-code">%c</span></td><td>char</td></tr>
+    <tr><td><span class="inline-code">%s</span></td><td>string</td></tr>
+    <tr><td><span class="inline-code">%x</span></td><td>hexadecimal</td></tr>
+</table>
+</section>
+
+<!-- 7. OPERATORS -->
+<section id="operators">
+  <span class="tag">Basics</span>
+  <h2>7️⃣ Operators</h2>
+  <div class="grid2">
+    <div>
+      <h3>Arithmetic</h3>
+      <p><span class="inline-code">+ - * / %</span></p>
+      <p><span class="inline-code">%</span> = modulus (remainder) → <span class="inline-code">10 % 3 = 1</span></p>
+    </div>
+    <div>
+      <h3>Relational</h3>
+      <p><span class="inline-code">== != &gt; &lt; &gt;= &lt;=</span></p>
+      <p>Result is always 1 (true) or 0 (false)</p>
+    </div>
+    <div>
+      <h3>Logical</h3>
+      <p><span class="inline-code">&amp;&amp;</span> (AND), <span class="inline-code">||</span> (OR), <span class="inline-code">!</span> (NOT)</p>
+    </div>
+    <div>
+      <h3>Assignment</h3>
+      <p><span class="inline-code">= += -= *= /= %=</span></p>
+    </div>
+    <div>
+      <h3>Increment/Decrement</h3>
+      <p><span class="inline-code">++</span> and <span class="inline-code">--</span> (pre and post)</p>
+    </div>
+    <div>
+      <h3>Bitwise</h3>
+      <p><span class="inline-code">&amp; | ^ ~ &lt;&lt; &gt;&gt;</span> (work on binary bits)</p>
+    </div>
+  </div>
+  <div class="tip"><b>Pre vs Post increment:</b> <span class="inline-code">++a</span> increases first, then uses value. <span class="inline-code">a++</span> uses value first, then increases. Example: if <span class="inline-code">a=5</span>, <span class="inline-code">printf("%d", a++)</span> prints <b>5</b> but a becomes 6 right after.</div>
+</section>
+
+<!-- 8. CONTROL -->
+<section id="control">
+  <span class="tag">Control Flow</span>
+  <h2>8️⃣ Decision Making — if / else / switch</h2>
+  <div class="def">Lets the program choose a path based on a condition (true/false).</div>
+<pre><code><span class="kw">int</span> marks = 75;
+<span class="kw">if</span> (marks &gt;= 90) {
+    printf(<span class="str">"Grade: A"</span>);
+} <span class="kw">else if</span> (marks &gt;= 75) {
+    printf(<span class="str">"Grade: B"</span>);
+} <span class="kw">else</span> {
+    printf(<span class="str">"Grade: C"</span>);
+}
+</code></pre>
+  <div class="out">Grade: B</div>
+  <h3>switch — cleaner alternative for many fixed choices</h3>
+<pre><code><span class="kw">int</span> day = 3;
+<span class="kw">switch</span>(day) {
+    <span class="kw">case</span> 1: printf(<span class="str">"Monday"</span>); <span class="kw">break</span>;
+    <span class="kw">case</span> 2: printf(<span class="str">"Tuesday"</span>); <span class="kw">break</span>;
+    <span class="kw">case</span> 3: printf(<span class="str">"Wednesday"</span>); <span class="kw">break</span>;
+    <span class="kw">default</span>: printf(<span class="str">"Invalid day"</span>);
+}
+</code></pre>
+  <div class="out">Wednesday</div>
+  <div class="tip"><b>Never forget <span class="inline-code">break</span>!</b> Without it, execution "falls through" and runs the next cases too.</div>
+</section>
+
+<!-- 9. LOOPS -->
+<section id="loops">
+  <span class="tag">Control Flow</span>
+  <h2>9️⃣ Loops</h2>
+  <div class="def">Loops repeat a block of code until a condition becomes false — used to avoid writing repetitive code.</div>
+  <h3>for loop — best when you know how many times to repeat</h3>
+<pre><code><span class="kw">for</span> (<span class="kw">int</span> i = 1; i &lt;= 5; i++) {
+    printf(<span class="str">"%d "</span>, i);
+}
+</code></pre>
+  <div class="out">1 2 3 4 5</div>
+  <h3>while loop — best when repetition depends on a condition, count unknown</h3>
+<pre><code><span class="kw">int</span> i = 1;
+<span class="kw">while</span> (i &lt;= 5) {
+    printf(<span class="str">"%d "</span>, i);
+    i++;
+}
+</code></pre>
+  <h3>do-while — runs the body AT LEAST ONCE, condition checked after</h3>
+<pre><code><span class="kw">int</span> i = 1;
+<span class="kw">do</span> {
+    printf(<span class="str">"%d "</span>, i);
+    i++;
+} <span class="kw">while</span> (i &lt;= 5);
+</code></pre>
+  <table>
+    <tr><th>Statement</th><th>Effect</th></tr>
+    <tr><td><span class="inline-code">break</span></td><td>Exits the loop immediately</td></tr>
+    <tr><td><span class="inline-code">continue</span></td><td>Skips current iteration, goes to next</td></tr>
+  </table>
+</section>
+
+<!-- 10. ARRAYS -->
+<section id="arrays">
+  <span class="tag">Data Structures</span>
+  <h2>🔟 Arrays</h2>
+  <div class="def">An array stores <b>multiple values of the same type</b> in one variable, in continuous memory locations, accessed using an index (starting from 0).</div>
+<pre><code><span class="kw">int</span> marks[5] = {90, 85, 76, 60, 99};
+printf(<span class="str">"%d"</span>, marks[0]);  <span class="cmt">// prints 90 (first element)</span>
+printf(<span class="str">"%d"</span>, marks[4]);  <span class="cmt">// prints 99 (last element)</span>
+
+<span class="cmt">// Looping through an array</span>
+<span class="kw">for</span>(<span class="kw">int</span> i = 0; i &lt; 5; i++){
+    printf(<span class="str">"%d "</span>, marks[i]);
+}
+</code></pre>
+  <div class="out">90 85 76 60 99</div>
+  <h3>2D Arrays (like a table/grid — used for matrices)</h3>
+<pre><code><span class="kw">int</span> matrix[2][3] = { {1,2,3}, {4,5,6} };
+printf(<span class="str">"%d"</span>, matrix[1][2]); <span class="cmt">// row 1, col 2 -> prints 6</span>
+</code></pre>
+  <div class="why"><b>Why it matters:</b> Arrays are the base of almost every DSA topic (stacks, queues, sorting, searching) you'll study for placements.</div>
+</section>
+
+<!-- 11. STRINGS -->
+<section id="strings">
+  <span class="tag">Data Structures</span>
+  <h2>1️⃣1️⃣ Strings</h2>
+  <div class="def">In C, a string is just a <b>character array</b> ending with a special null character <span class="inline-code">'\0'</span> (marks the end).</div>
+<pre><code><span class="kw">char</span> name[20] = <span class="str">"Mitali"</span>;
+printf(<span class="str">"%s"</span>, name);  <span class="cmt">// %s used for whole strings</span>
+</code></pre>
+  <h3>Common String Functions (from <span class="inline-code">string.h</span>)</h3>
+  <table>
+    <tr><th>Function</th><th>Use</th></tr>
+    <tr><td><span class="inline-code">strlen(s)</span></td><td>Returns length of string (excludes '\0')</td></tr>
+    <tr><td><span class="inline-code">strcpy(dest, src)</span></td><td>Copies src string into dest</td></tr>
+    <tr><td><span class="inline-code">strcat(s1, s2)</span></td><td>Joins (concatenates) s2 to end of s1</td></tr>
+    <tr><td><span class="inline-code">strcmp(s1, s2)</span></td><td>Compares two strings; returns 0 if equal</td></tr>
+  </table>
+<pre><code><span class="kw">#include</span> &lt;string.h&gt;
+<span class="kw">char</span> a[20] = <span class="str">"Hello"</span>, b[20] = <span class="str">"World"</span>;
+strcat(a, b);
+printf(<span class="str">"%s"</span>, a);  <span class="cmt">// HelloWorld</span>
+printf(<span class="str">"%d"</span>, strlen(a));  <span class="cmt">// 10</span>
+</code></pre>
+</section>
+
+<!-- 12. FUNCTIONS -->
+<section id="functions">
+  <span class="tag">Modular Code</span>
+  <h2>1️⃣2️⃣ Functions</h2>
+  <div class="def">A function is a reusable block of code that performs one task. <span class="inline-code">main()</span> itself is a function — every C program has at least one.</div>
+<pre><code><span class="cmt">// Function declaration (prototype)</span>
+<span class="kw">int</span> <span class="fn">add</span>(<span class="kw">int</span> a, <span class="kw">int</span> b);
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> result = add(5, 3);  <span class="cmt">// function CALL</span>
+    printf(<span class="str">"%d"</span>, result);
+    <span class="kw">return</span> 0;
+}
+
+<span class="cmt">// Function definition</span>
+<span class="kw">int</span> <span class="fn">add</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">return</span> a + b;
+}
+</code></pre>
+  <div class="out">8</div>
+  <h3>Why break code into functions?</h3>
+  <ul>
+    <li>Reusability — write once, call many times</li>
+    <li>Easier debugging — test small pieces separately</li>
+    <li>Readability — <span class="inline-code">main()</span> stays short and clear</li>
+  </ul>
+  <h3>Parameter Passing</h3>
+  <table>
+    <tr><th>Type</th><th>Meaning</th></tr>
+    <tr><td>Call by Value</td><td>A copy of the variable is sent; original is unaffected by changes inside function</td></tr>
+    <tr><td>Call by Reference</td><td>The address (pointer) is sent; original variable CAN be changed</td></tr>
+  </table>
+</section>
+
+<!-- 13. RECURSION -->
+<section id="recursion">
+  <span class="tag">Modular Code</span>
+  <h2>1️⃣3️⃣ Recursion</h2>
+  <div class="def">A function that calls <b>itself</b> to solve a smaller version of the same problem, until it reaches a "base case" that stops it.</div>
+<pre><code><span class="kw">int</span> <span class="fn">factorial</span>(<span class="kw">int</span> n) {
+    <span class="kw">if</span> (n == 0) <span class="kw">return</span> 1;      <span class="cmt">// base case — stops recursion</span>
+    <span class="kw">return</span> n * factorial(n - 1); <span class="cmt">// recursive call</span>
+}
+<span class="cmt">// factorial(4) = 4*3*2*1*1 = 24</span>
+</code></pre>
+  <div class="why"><b>Why learn it:</b> Recursion is essential for tree/graph traversal, sorting algorithms (merge sort, quick sort), and is a favorite interview/exam topic.</div>
+  <div class="tip"><b>Golden rule:</b> Every recursive function MUST have a base case, or it runs forever and crashes (stack overflow).</div>
+</section>
+
+<!-- 14. STORAGE CLASSES -->
+<section id="storage">
+  <span class="tag">Advanced Basics</span>
+  <h2>1️⃣4️⃣ Storage Classes</h2>
+  <div class="def">Storage class decides a variable's <b>lifetime</b> (how long it exists) and <b>scope</b> (where it can be accessed).</div>
+  <table>
+    <tr><th>Class</th><th>Default Value</th><th>Scope</th><th>Lifetime</th></tr>
+    <tr><td><span class="inline-code">auto</span></td><td>Garbage</td><td>Local (inside block)</td><td>Till block ends</td></tr>
+    <tr><td><span class="inline-code">static</span></td><td>0</td><td>Local</td><td>Whole program — retains value between calls</td></tr>
+    <tr><td><span class="inline-code">extern</span></td><td>0</td><td>Global</td><td>Whole program — declared elsewhere</td></tr>
+    <tr><td><span class="inline-code">register</span></td><td>Garbage</td><td>Local</td><td>Till block ends — stored in CPU register for speed</td></tr>
+  </table>
+  <div class="tip"><b>Most asked:</b> <span class="inline-code">static</span> variables remember their value the next time the function is called — unlike normal local variables which reset every call.</div>
+</section>
+
+<!-- 15. POINTERS -->
+<section id="pointers">
+  <span class="tag">Core Concept</span>
+  <h2>1️⃣5️⃣ Pointers</h2>
+  <div class="def">A pointer is a variable that stores the <b>memory address</b> of another variable, instead of a normal value.</div>
+<pre><code><span class="kw">int</span> age = 20;
+<span class="kw">int</span> *p = &amp;age;   <span class="cmt">// p stores the ADDRESS of age</span>
+
+printf(<span class="str">"%d"</span>, age);    <span class="cmt">// 20 (value)</span>
+printf(<span class="str">"%p"</span>, &amp;age);   <span class="cmt">// e.g. 0x7ffe... (address)</span>
+printf(<span class="str">"%d"</span>, *p);     <span class="cmt">// 20 (*p means "value AT this address" - dereferencing)</span>
+</code></pre>
+  <table>
+    <tr><th>Symbol</th><th>Meaning</th></tr>
+    <tr><td><span class="inline-code">&amp;</span></td><td>"Address of" — gives the memory location of a variable</td></tr>
+    <tr><td><span class="inline-code">*</span></td><td>"Value at address" (dereference) OR declares a pointer variable</td></tr>
+  </table>
+  <div class="why"><b>Why pointers are powerful (and scary at first):</b> They let a function actually modify the original variable (call by reference), let you build dynamic data structures (linked lists, trees), and let you manage memory manually.</div>
+  <div class="tip"><b>Beginner tip:</b> Read <span class="inline-code">int *p</span> as "p is a pointer that will point to an int". Practice tracing address vs value on paper — this is where most Sem-1 students get confused, so go slow here.</div>
+</section>
+
+<!-- 16. STRUCT/UNION -->
+<section id="structs">
+  <span class="tag">Core Concept</span>
+  <h2>1️⃣6️⃣ Structures & Unions</h2>
+  <div class="def"><b>Structure</b> groups <i>different data types</i> together under one name — useful for representing a real-world entity (like a Student with name, roll no, marks).</div>
+<pre><code><span class="kw">struct</span> Student {
+    <span class="kw">char</span> name[20];
+    <span class="kw">int</span> roll;
+    <span class="kw">float</span> marks;
+};
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">struct</span> Student s1 = {<span class="str">"Mitali"</span>, 101, 92.5};
+    printf(<span class="str">"%s %d %.1f"</span>, s1.name, s1.roll, s1.marks);
+    <span class="kw">return</span> 0;
+}
+</code></pre>
+  <div class="out">Mitali 101 92.5</div>
+  <div class="def" style="margin-top:14px;"><b>Union</b> looks similar but all members <b>share the same memory location</b> — so only one member holds a valid value at a time (saves memory).</div>
+  <table>
+    <tr><th>Structure</th><th>Union</th></tr>
+    <tr><td>Each member has own memory</td><td>All members share one memory block</td></tr>
+    <tr><td>Size = sum of all members</td><td>Size = size of largest member</td></tr>
+    <tr><td>All values usable simultaneously</td><td>Only last-assigned value is valid</td></tr>
+  </table>
+</section>
+
+<!-- 17. DMA -->
+<section id="dma">
+  <span class="tag">Advanced</span>
+  <h2>1️⃣7️⃣ Dynamic Memory Allocation</h2>
+  <div class="def">Normally array size is fixed at compile time. DMA lets you request memory <b>while the program is running</b>, from <span class="inline-code">stdlib.h</span>.</div>
+  <table>
+    <tr><th>Function</th><th>Use</th></tr>
+    <tr><td><span class="inline-code">malloc(size)</span></td><td>Allocates memory, contains garbage values</td></tr>
+    <tr><td><span class="inline-code">calloc(n, size)</span></td><td>Allocates memory for n elements, initialized to 0</td></tr>
+    <tr><td><span class="inline-code">realloc(ptr, size)</span></td><td>Resizes previously allocated memory</td></tr>
+    <tr><td><span class="inline-code">free(ptr)</span></td><td>Releases memory back to the system</td></tr>
+  </table>
+<pre><code><span class="kw">int</span> *arr = (<span class="kw">int</span>*) malloc(5 * <span class="kw">sizeof</span>(<span class="kw">int</span>));
+<span class="kw">if</span> (arr == NULL) { printf(<span class="str">"Memory not allocated"</span>); }
+arr[0] = 10;
+free(arr);  <span class="cmt">// always free what you malloc — prevents "memory leaks"</span>
+</code></pre>
+</section>
+
+<!-- 18. FILES -->
+<section id="files">
+  <span class="tag">Advanced</span>
+  <h2>1️⃣8️⃣ File Handling</h2>
+  <div class="def">Lets a program store data permanently on disk (in a file) instead of losing it when the program ends.</div>
+<pre><code><span class="kw">FILE</span> *fp = fopen(<span class="str">"data.txt"</span>, <span class="str">"w"</span>);  <span class="cmt">// open in WRITE mode</span>
+fprintf(fp, <span class="str">"Mitali scored 92"</span>);
+fclose(fp);                              <span class="cmt">// ALWAYS close after use</span>
+
+<span class="kw">FILE</span> *fp2 = fopen(<span class="str">"data.txt"</span>, <span class="str">"r"</span>);  <span class="cmt">// open in READ mode</span>
+<span class="kw">char</span> buffer[100];
+fscanf(fp2, <span class="str">"%[^\n]"</span>, buffer);
+printf(<span class="str">"%s"</span>, buffer);
+fclose(fp2);
+</code></pre>
+  <table>
+    <tr><th>Mode</th><th>Meaning</th></tr>
+    <tr><td><span class="inline-code">"r"</span></td><td>Read (file must exist)</td></tr>
+    <tr><td><span class="inline-code">"w"</span></td><td>Write (creates new / erases existing)</td></tr>
+    <tr><td><span class="inline-code">"a"</span></td><td>Append (adds to end without erasing)</td></tr>
+  </table>
+</section>
+
+<!-- 19. PREPROCESSOR -->
+<section id="preproc">
+  <span class="tag">Advanced</span>
+  <h2>1️⃣9️⃣ Preprocessor Directives</h2>
+  <div class="def">Lines starting with <span class="inline-code">#</span> — processed BEFORE compilation, they don't end with a semicolon.</div>
+  <table>
+    <tr><th>Directive</th><th>Use</th></tr>
+    <tr><td><span class="inline-code">#include</span></td><td>Inserts a library file's code</td></tr>
+    <tr><td><span class="inline-code">#define</span></td><td>Creates a macro / constant (simple text replacement)</td></tr>
+    <tr><td><span class="inline-code">#ifdef / #ifndef</span></td><td>Conditional compilation — includes code only if a condition is met</td></tr>
+  </table>
+<pre><code><span class="kw">#define</span> SQUARE(x) ((x)*(x))
+printf(<span class="str">"%d"</span>, SQUARE(5));  <span class="cmt">// 25</span>
+</code></pre>
+</section>
+
+<hr class="divider">
+
+<!-- 20. TRICKY -->
+<section id="tricky" style="border-left-color:var(--pink);">
+  <span class="tag" style="background:#fdf2f8; color:var(--pink);">Exam Ready</span>
+  <h2>🎯 Common Confusions & Quick Exam Tips</h2>
+  <table>
+    <tr><th>Confusion</th><th>Clarification</th></tr>
+    <tr><td><span class="inline-code">=</span> vs <span class="inline-code">==</span></td><td><span class="inline-code">=</span> assigns a value; <span class="inline-code">==</span> compares two values</td></tr>
+    <tr><td><span class="inline-code">char c='A'</span> vs <span class="inline-code">char s[]="A"</span></td><td>First is one character; second is a 2-char array ('A' + '\0')</td></tr>
+    <tr><td>Array vs Pointer</td><td>An array name decays into a pointer to its first element, but an array itself is a fixed block, a pointer can be reassigned</td></tr>
+    <tr><td>while vs do-while</td><td>while checks condition BEFORE running; do-while runs body once, THEN checks</td></tr>
+    <tr><td>Global vs Local variable</td><td>Global: declared outside all functions, accessible everywhere. Local: declared inside a function, accessible only there</td></tr>
+    <tr><td>malloc vs calloc</td><td>malloc = uninitialized garbage memory; calloc = memory pre-set to zero</td></tr>
+  </table>
+  <div class="tip"><b>How to "own" this topic in a viva/interview:</b> For every concept, be able to say in one line: (1) what it is, (2) a tiny code example, (3) why/where it's used. That 3-step explanation is exactly what examiners and interviewers want — you now have all three for every topic above.</div>
+  <div class="why"><b>Practice plan:</b> Don't just read — type every example above yourself in a compiler, change the numbers, and predict the output before running it. That's how this becomes permanent knowledge instead of just notes.</div>
+</section>
+
+</div>
+
+<footer>Made for Mitali Verma · B.Tech IT, Parul University · Semester 1, 2026</footer>
+
+</body>
+</html>
